@@ -115,7 +115,7 @@ app.get("/pages/all-greater/200", (req, res) => {
 app.use("*", (req, res) => {
     res.status(404).send("Ruta no encontrada");
 });
-
+//Para acceder a la url de pruebas
 app.listen(port, () => {
     console.log(`Example app listening on http://localhost:${port}`);
-});
+}); 
