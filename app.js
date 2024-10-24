@@ -14,7 +14,7 @@ app.get("/", (req, res) => {
 
 // HTTP GET http://localhost:3000/all
 app.get("/all", (req, res) => {
-    res.send(
+    res.status(200).json(
         books
     );
 });
