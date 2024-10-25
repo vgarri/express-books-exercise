@@ -20,26 +20,26 @@ app.get("/all", (req, res) => {
 });
 
 app.get("/first", (req, res) => {
-    res.send(
+    res.status(200).json(
         books[0]
     );
 });
 
 app.get("/last", (req, res) => {
-    res.send(
+    res.status(200).json(
         books[books.length - 1]
     );
 });
 app.get("/middle", (req, res) => {
-    res.send(
-        books[(books.length - 1) / 2]
+    res.status(200).json(
+        books[(books.length) / 2]
     );
 });
 
 app.get("/author/dante-alighieri", (req, res) => {
     books.forEach(book => {
         if (book.author.includes("Dante Alighieri")) {
-            res.send(
+            res.status(200).json(
                 book.title
             );
         }
@@ -49,7 +49,7 @@ app.get("/author/dante-alighieri", (req, res) => {
 app.get("/country/charles-dickens", (req, res) => {
     books.forEach(book => {
         if (book.author.includes("Charles Dickens")) {
-            res.send(
+            res.status(200).json(
                 book.country
             );
         }
@@ -60,7 +60,7 @@ app.get("/year&pages/cervantes", (req, res) => {
     books.forEach(book => {
         if (book.author.includes("Miguel de Cervantes")) {
             let libro = { pages: book.pages, year: book.year };
-            res.send(
+            res.status(200).json(
                 libro
             );
         }
@@ -68,12 +68,13 @@ app.get("/year&pages/cervantes", (req, res) => {
 });
 app.get("/country/count/spain", (req, res) => {
     books.forEach(book => {
-        let i = 0;
+        let i = [];
         if (book.country.includes("Spain")) {
-            i += 1
-            res.send(
-                `Número de libros de España: ${i}`
+            i.push(book)
+            res.status(200).json(
+                `Número de libros de España: ${i.length}`
             );
+            
         }
     });
 });
@@ -85,11 +86,11 @@ app.get("/country/at-least/germany", (req, res) => {
         if (book.country.includes("Germany")) {
             i += 1;
             if (i != 0) {
-                res.send(
+                res.status(200).json(
                     true
                 )
             } else {
-                res.send(
+                res.status(200).json(
                     false
                 )
             }
@@ -102,7 +103,7 @@ app.get("/country/at-least/germany", (req, res) => {
 app.get("/pages/all-greater/200", (req, res) => {
     books.forEach(book => {
         if (book.pages < 200) {
-            res.send(
+            res.status(200).json(
                 false //logica negativa para no iterar todo el array. desde que uno no cumpla, ya no son TODOS
             );
         }
