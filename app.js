@@ -67,16 +67,18 @@ app.get("/year&pages/cervantes", (req, res) => {
     });
 });
 app.get("/country/count/spain", (req, res) => {
+    let i = 0;
     books.forEach(book => {
-        let i = [];
-        if (book.country.includes("Spain")) {
-            i.push(book)
-            res.status(200).json(
-                `Número de libros de España: ${i.length}`
-            );
-            
+
+        if (book.country === "Spain") {
+            i += 1;
+
         }
-    });
+
+    })
+    res.status(200).json(
+        i
+    )
 });
 
 //Crea una ruta /country/at-least/germany para obtener VERDADERO O FALSO dependiendo de si hay o no un libro de Alemania
